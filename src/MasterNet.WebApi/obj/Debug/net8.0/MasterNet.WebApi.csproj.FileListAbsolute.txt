@@ -31,3 +31,4 @@ C:\projetos\MasterNet\src\MasterNet.WebApi\obj\Debug\net8.0\refint\MasterNet.Web
 C:\projetos\MasterNet\src\MasterNet.WebApi\obj\Debug\net8.0\MasterNet.WebApi.pdb
 C:\projetos\MasterNet\src\MasterNet.WebApi\obj\Debug\net8.0\MasterNet.WebApi.genruntimeconfig.cache
 C:\projetos\MasterNet\src\MasterNet.WebApi\obj\Debug\net8.0\ref\MasterNet.WebApi.dll
+C:\projetos\MasterNet\src\MasterNet.WebApi\obj\Debug\net8.0\MasterNet.WebApi.sourcelink.json
