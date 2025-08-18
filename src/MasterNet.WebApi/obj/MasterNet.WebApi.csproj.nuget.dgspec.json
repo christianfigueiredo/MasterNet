@@ -1,26 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/home/chris/Projetos/dotnet/MasterNet/src/MasterNet.WebApi/MasterNet.WebApi.csproj": {}
+    "C:\\projetos\\MasterNet\\src\\MasterNet.WebApi\\MasterNet.WebApi.csproj": {}
   },
   "projects": {
-    "/home/chris/Projetos/dotnet/MasterNet/src/MasterNet.WebApi/MasterNet.WebApi.csproj": {
+    "C:\\projetos\\MasterNet\\src\\MasterNet.WebApi\\MasterNet.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/chris/Projetos/dotnet/MasterNet/src/MasterNet.WebApi/MasterNet.WebApi.csproj",
+        "projectUniqueName": "C:\\projetos\\MasterNet\\src\\MasterNet.WebApi\\MasterNet.WebApi.csproj",
         "projectName": "MasterNet.WebApi",
-        "projectPath": "/home/chris/Projetos/dotnet/MasterNet/src/MasterNet.WebApi/MasterNet.WebApi.csproj",
-        "packagesPath": "/home/chris/.nuget/packages/",
-        "outputPath": "/home/chris/Projetos/dotnet/MasterNet/src/MasterNet.WebApi/obj/",
+        "projectPath": "C:\\projetos\\MasterNet\\src\\MasterNet.WebApi\\MasterNet.WebApi.csproj",
+        "packagesPath": "C:\\Users\\fchristian\\.nuget\\packages\\",
+        "outputPath": "C:\\projetos\\MasterNet\\src\\MasterNet.WebApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/chris/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\fchristian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "/usr/lib/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -33,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -67,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
