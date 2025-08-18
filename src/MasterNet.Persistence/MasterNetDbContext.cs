@@ -15,7 +15,6 @@ namespace MasterNet.Persistence
         public DbSet<Qualificacao> Qualificacoes { get; set; }
 
 
-        public MasterNetDbContext(DbContextOptions<MasterNetDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=masternet.db")
@@ -28,6 +27,7 @@ namespace MasterNet.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Curso>().ToTable("cursos");
             modelBuilder.Entity<CursoPreco>().ToTable("curso_precos");
             modelBuilder.Entity<Preco>().ToTable("precos");
