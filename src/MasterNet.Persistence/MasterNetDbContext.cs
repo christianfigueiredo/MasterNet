@@ -1,10 +1,13 @@
 using Bogus;
 using MasterNet.Domain;
+using MasterNet.Persistence.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MasterNet.Persistence
 {
-    public class MasterNetDbContext : DbContext
+    public class MasterNetDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Curso> Cursos { get; set; }
         //public DbSet<CursoPreco> CursoPrecos { get; set; }
@@ -14,12 +17,16 @@ namespace MasterNet.Persistence
         //public DbSet<CursoInstrutor> CursoInstrutores { get; set; }
         public DbSet<Qualificacao> Qualificacoes { get; set; }
 
+        public DbSet<AppUser> AppUsers { get; set; }
+        
+        
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=masternet.db")
             .LogTo(Console.WriteLine,
-            new [] {DbLoggerCategory.Database.Command.Name},
+            new[] { DbLoggerCategory.Database.Command.Name },
             Microsoft.Extensions.Logging.LogLevel.Information
             ).EnableSensitiveDataLogging();
         }
@@ -27,7 +34,7 @@ namespace MasterNet.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
             modelBuilder.Entity<Curso>().ToTable("cursos");
             modelBuilder.Entity<CursoPreco>().ToTable("curso_precos");
             modelBuilder.Entity<Preco>().ToTable("precos");
@@ -85,10 +92,28 @@ namespace MasterNet.Persistence
             modelBuilder.Entity<Instrutor>().HasData(DataMaster().Item2);
             modelBuilder.Entity<Preco>().HasData(DataMaster().Item3);
 
+            CarregarDataSeguridade(modelBuilder);
+            
+
+        }
+
+        private void CarregarDataSeguridade(ModelBuilder modelBuilder)
+        {
+            var adminId = Guid.NewGuid().ToString();
+            var clientId = Guid.NewGuid().ToString();
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = adminId,
+                    Name = "admin",
+                    
+                }
+            );
         }
 
         public Tuple<Curso[], Instrutor[], Preco[]> DataMaster()
-        {  
+        {
             var cursos = new List<Curso>();
             var faker = new Faker();
 
@@ -104,7 +129,7 @@ namespace MasterNet.Persistence
                         DataPublicacao = DateTime.UtcNow
                     }
                 );
-            }         
+            }
 
             var precoId = Guid.NewGuid();
             var preco = new Preco
@@ -127,9 +152,9 @@ namespace MasterNet.Persistence
                 .RuleFor(p => p.Sobrenome, f => f.Name.LastName())
                 .RuleFor(p => p.GrauAcademico, f => f.Name.JobTitle());
 
-            var instrutores = fakeInstrutor.Generate(10);         
-            
-            
+            var instrutores = fakeInstrutor.Generate(10);
+
+
             return Tuple.Create(cursos.ToArray(), instrutores.ToArray(), precos.ToArray());
         }
         
