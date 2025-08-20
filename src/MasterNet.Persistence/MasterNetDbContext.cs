@@ -88,9 +88,9 @@ namespace MasterNet.Persistence
                 }
                 );
 
-            modelBuilder.Entity<Curso>().HasData(DataMaster().Item1);
-            modelBuilder.Entity<Instrutor>().HasData(DataMaster().Item2);
-            modelBuilder.Entity<Preco>().HasData(DataMaster().Item3);
+            modelBuilder.Entity<Curso>().HasData(CarregarDataMaster().Item1);
+            modelBuilder.Entity<Instrutor>().HasData(CarregarDataMaster().Item2);
+            modelBuilder.Entity<Preco>().HasData(CarregarDataMaster().Item3);
 
             CarregarDataSeguridade(modelBuilder);
             
@@ -106,13 +106,124 @@ namespace MasterNet.Persistence
                 new IdentityRole
                 {
                     Id = adminId,
-                    Name = "admin",
-                    
+                    Name = CustomRoles.ADMIN,
+                    NormalizedName = CustomRoles.ADMIN.ToUpper()
+                });
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+            new IdentityRole
+            {
+                Id = clientId,
+                Name = CustomRoles.CLIENT,
+                NormalizedName = CustomRoles.CLIENT.ToUpper()
+            });
+
+            modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(
+                new IdentityRoleClaim<string>
+                {
+                    Id = 1,
+                    RoleId = adminId,
+                    ClaimType = CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.CURSO_READ        
+
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 2,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.CURSO_UPDATE
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 3,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.CURSO_READ
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 4,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.CURSO_DELETE
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 5,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.INSTRUTOR_CREATE
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 6,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.INSTRUTOR_READ
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 7,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.INSTRUTOR_UPDATE
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 8,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.COMENTARIO_READ
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 9,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.COMENTARIO_DELETE
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 10,
+                    RoleId = adminId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.COMENTARIO_CREATE
+                },
+
+                new IdentityRoleClaim<string>
+                {
+                    Id = 11,
+                    RoleId = clientId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.CURSO_READ
+                },
+
+                new IdentityRoleClaim<string>
+                {
+                    Id = 12,
+                    RoleId = clientId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.INSTRUTOR_READ
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 13,
+                    RoleId = clientId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.COMENTARIO_READ
+                },
+                new IdentityRoleClaim<string>
+                {
+                    Id = 14,
+                    RoleId = clientId,
+                    ClaimType =  CustomClaims.POLICIES.ToUpper(),
+                    ClaimValue = PolicyMaster.COMENTARIO_CREATE
                 }
             );
         }
 
-        public Tuple<Curso[], Instrutor[], Preco[]> DataMaster()
+        private Tuple<Curso[], Instrutor[], Preco[]> CarregarDataMaster()
         {
             var cursos = new List<Curso>();
             var faker = new Faker();
